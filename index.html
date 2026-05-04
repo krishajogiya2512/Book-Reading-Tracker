@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Reading Tracker</title>
+
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="page-wrapper">
+    <header>
+        <nav class="navbar">
+            <h2 class="site-name">BOOK NEST</h2>
+
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#section">Explore</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="">Account</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main>
+
+        <div id="hero">
+            <div class="hero-content">
+                <h1>Track your reading journey</h1>
+
+                <p class="hero-sub">
+                    Build habits, save progress, and discover<br> the joy of reading.
+                </p>
+
+                <button class="hero-btn">Start Reading</button>
+            </div>
+        </div>
+
+
+        <div id="outer">
+            <div id="section">
+
+                <div id="featureBox">
+                    <div class="featureHeader">
+                        <h1 class="mainHeading">Track your books<br>in one place</h1>
+                        <p class="subText">
+                            Stay organized with reading lists, progress updates,goals,<br>
+                            and a clear view of everything you pick up.
+                        </p>
+
+                        <!-- maybe change this to a button later? -->
+                        <a href="tracker.html" class="btn">Get Started</a>
+
+
+                    </div>
+
+                    <div class="featureThumbnails">
+                        <div id="thumb1">
+                            <img src="images/tracker-image-main2.jpg" alt="Tracker Image 2">
+                        </div>
+                        <div id="thumb2">
+                            <img src="images/tracker-image-main3.jpg" alt="Tracker Image 3">
+                        </div>
+                    </div>
+
+                </div>
+                <div id="featureImage">
+                    <img src="images/tracker-image-main.jpg" alt="Main Tracker Image">
+                </div>
+            </div>
+
+            <div id="librarySection">
+
+                <div id="libImage">
+                    <img src="images/mainimage.jpg" alt="Library image" class="section-image" />
+                </div>
+
+                <div id="libContent">
+
+                    <div class="libHeader">
+                        <h1 class="mainHeading">Build a library<br>you will love</h1>
+                        <p class="subText">
+                            Save the books you have read, the ones you want to explore,<br>
+                            and the stories that matter to you all beautifully organized.
+                        </p>
+                        <button class="primaryBtn">View Library</button>
+                    </div>
+
+                    <div class="libThumbnails">
+                        <div id="libThumb1">
+                            <img src="images/againimageee.jpg" alt="Library detail 1" class="section-image" />
+                        </div>
+                        <div id="libThumb2">
+                            <img src="images/pexels-cottonbro-4855329.jpg" alt="Library detail 2"
+                                class="section-image" />
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="habitSection">
+
+                <div id="habitContent">
+                    <div class="habitHeader">
+                        <h1 class="mainHeading">Make reading a calm<br>daily ritual</h1>
+                        <p class="subText">
+                            Build a peaceful reading routine with streaks, reminders,<br>
+                            and gentle insights that help you stay consistent.
+                        </p>
+
+                        <button class="primaryBtn">Start Habit</button>
+                    </div>
+
+                    <div class="habitThumbnails">
+                        <div id="habitThumb1">
+                            <img src="images/readinghabits3.jpg" alt="Reading Habit Image 3">
+                        </div>
+                        <div id="habitThumb2">
+                            <img src="images/readinghabit2.jpg" alt="Reading Habit Image 2">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="habitImage">
+                    <img src="images/reading-habit.jpg" alt="Main Reading Habit Image">
+                </div>
+
+            </div>
+
+
+        </div>
+    </main>
+
+    <section id="reviews">
+        <h2 class="review-heading">Feedback from our readers</h2>
+
+        <div class="review-wrapper">
+            <div class="review-track">
+
+                <div class="review-card">“This app helps me stay consistent with reading every day.” <span>-
+                        Aanya</span></div>
+                <div class="review-card">“Beautiful interface and calming vibe. I love tracking my daily habits.”<span>-
+                        Rishi</span></div>
+                <div class="review-card">“The streak reminders keep me motivated without stress.” <span>- Mira</span>
+                </div>
+                <div class="review-card">“Finally building a reading habit after years of trying!” <span>- Vedant</span>
+                </div>
+                <div class="review-card">“A peaceful place for readers. Love the minimal design.” <span>- Kavya</span>
+                </div>
+
+                <div class="review-card">“This app helps me stay consistent with reading every day.” <span>-
+                        Aanya</span></div>
+                <div class="review-card">“Beautiful interface and calming vibe. I love tracking my daily habits.”
+                    <span>- Rishi</span></div>
+                <div class="review-card">“The streak reminders keep me motivated without stress.” <span>- Mira</span>
+                </div>
+                <div class="review-card">“Finally building a reading habit after years of trying!” <span>- Vedant</span>
+                </div>
+                <div class="review-card">“A peaceful place for readers. Love the minimal design.” <span>- Kavya</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <h3>BOOK NEST</h3>
+
+        <p class="footer-sub">Read. Track. Grow.</p>
+
+        <div class="footer-links">
+            <a href="#">Home</a>
+            <a href="#">Explore</a>
+            <a href="#">Reviews</a>
+            <a href="#">Account</a>
+        </div>
+
+        <p class="footer-copy">© 2025 Book Nest. All rights reserved.</p>
+    </footer>
+    </div>
+    <!-- yaha tk home iske baad login-window -->
+
+    <div id="popup-bg">
+        <div id="authModal">
+
+            <!-- login state -->
+            <div class="form login-form">
+                <h2>Welcome Back</h2>
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Password">
+                <button class="popup-btn">Login</button>
+                <p class="switch">Don't have an account? <span id="showSignup">Sign Up</span></p>
+            </div>
+
+
+            <div class="form signup-form" style="display:none;">
+                <h2>Sign Up</h2>
+                <input type="text" placeholder="Full Name">
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Create Password">
+                <button class="popup-btn">Create Account</button>
+                <p class="switch">Already have an account? <span id="showLogin">Login</span></p>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
