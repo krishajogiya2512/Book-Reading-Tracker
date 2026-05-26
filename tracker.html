@@ -308,6 +308,161 @@
     </section>
   </main>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Define default books state matching the initial HTML
+      const defaultBooks = [
+        {
+          title: "The Midnight Library",
+          author: "Matt Haig",
+          currentPage: 156,
+          totalPages: 304,
+          status: "Reading"
+        },
+        {
+          title: "The Song of Achilles",
+          author: "Madeline Miller",
+          currentPage: 89,
+          totalPages: 416,
+          status: "Reading"
+        }
+      ];
+
+      // Load books state from localStorage or initialize with defaults
+      let books = JSON.parse(localStorage.getItem('booknest_active_books'));
+      if (!books) {
+        books = defaultBooks;
+        localStorage.setItem('booknest_active_books', JSON.stringify(books));
+      }
+
+      // Update UI helper function
+      function updateUI(booksState) {
+        // 1. Update "Currently Reading" cards
+        const readingCards = document.querySelectorAll('.reading-card');
+        readingCards.forEach(card => {
+          const titleEl = card.querySelector('.reading-title');
+          if (!titleEl) return;
+          const title = titleEl.textContent.trim();
+          const book = booksState.find(b => b.title === title);
+          if (!book) return;
+
+          const percentage = Math.round((book.currentPage / book.totalPages) * 100);
+          
+          // Update progress fill bar width
+          const fillEl = card.querySelector('.progress-fill');
+          if (fillEl) {
+            fillEl.style.width = percentage + '%';
+          }
+          
+          // Update progress description text
+          const textEl = card.querySelector('.progress-text');
+          if (textEl) {
+            textEl.textContent = `Page ${book.currentPage} of ${book.totalPages} · ${percentage}%`;
+          }
+
+          // Cap/disable the "+10 pages" button if book is completed
+          const plusTenBtn = card.querySelector('.btn-soft');
+          if (plusTenBtn) {
+            if (book.currentPage >= book.totalPages) {
+              plusTenBtn.disabled = true;
+              plusTenBtn.style.opacity = '0.5';
+              plusTenBtn.style.cursor = 'not-allowed';
+            } else {
+              plusTenBtn.disabled = false;
+              plusTenBtn.style.opacity = '';
+              plusTenBtn.style.cursor = '';
+            }
+          }
+        });
+
+        // 2. Update "My Library" cards to keep the status badge and progress text in sync
+        const bookCards = document.querySelectorAll('.book-card');
+        bookCards.forEach(card => {
+          const titleEl = card.querySelector('.book-title');
+          if (!titleEl) return;
+          const title = titleEl.textContent.trim();
+          const book = booksState.find(b => b.title === title);
+          if (!book) return;
+
+          const percentage = Math.round((book.currentPage / book.totalPages) * 100);
+
+          // Update status badge (Reading/Completed)
+          const badgeEl = card.querySelector('.status-badge');
+          if (badgeEl) {
+            badgeEl.textContent = book.status;
+            if (book.status === 'Completed') {
+              badgeEl.className = 'status-badge badge-completed';
+            } else {
+              badgeEl.className = 'status-badge badge-reading';
+            }
+          }
+
+          // Update progress text if it exists
+          const progressEl = card.querySelector('.book-progress');
+          if (progressEl) {
+            progressEl.textContent = `${percentage}% complete (${book.currentPage}/${book.totalPages} pages)`;
+          }
+        });
+
+        // 3. Update total stats on the dashboard
+        const statCards = document.querySelectorAll('.stat-card');
+        statCards.forEach(card => {
+          const labelEl = card.querySelector('.stat-label');
+          const valueEl = card.querySelector('.stat-value');
+          if (!labelEl || !valueEl) return;
+          
+          const label = labelEl.textContent.trim();
+          if (label === 'Currently Reading') {
+            const count = booksState.filter(b => b.status === 'Reading').length;
+            valueEl.textContent = count;
+          } else if (label === 'Books Completed') {
+            const count = 2 + booksState.filter(b => b.status === 'Completed').length;
+            valueEl.textContent = count;
+          } else if (label === 'Pages Read') {
+            const pages = 473 + booksState.reduce((sum, b) => sum + b.currentPage, 0);
+            valueEl.textContent = pages;
+          }
+        });
+      }
+
+      // Initial UI update
+      updateUI(books);
+
+      // Setup event delegation on parent container (.activeBooks) for click events on the "+10 pages" buttons
+      const activeBooksContainer = document.querySelector('.activeBooks');
+      if (activeBooksContainer) {
+        activeBooksContainer.addEventListener('click', (event) => {
+          // Identify the "+10 pages" button
+          const btn = event.target.closest('.btn-soft');
+          if (btn && btn.textContent.trim().toLowerCase().includes('+10')) {
+            const card = btn.closest('.reading-card');
+            if (!card) return;
+            
+            const titleEl = card.querySelector('.reading-title');
+            if (!titleEl) return;
+            
+            const title = titleEl.textContent.trim();
+            const book = books.find(b => b.title === title);
+            if (!book) return;
+
+            // Increase current page count by 10 (capped at totalPages)
+            book.currentPage = Math.min(book.currentPage + 10, book.totalPages);
+            
+            // Auto-complete if totalPages is reached
+            if (book.currentPage >= book.totalPages) {
+              book.status = 'Completed';
+            }
+
+            // Persist to localStorage
+            localStorage.setItem('booknest_active_books', JSON.stringify(books));
+
+            // Sync changes to UI
+            updateUI(books);
+          }
+        });
+      }
+    });
+  </script>
 </body>
 
 </html>
