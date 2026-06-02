@@ -183,3 +183,213 @@
     margin-top: 60px;
     margin-bottom: 0px;
 }
+
+/* ==========================================
+   MOTION AND INTERACTIVE ANIMATIONS SYSTEM
+   ========================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* 2. Hero Section Entrance and Float Animations */
+.library-box {
+    opacity: 0;
+    animation: heroFadeIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards,
+               float 6s ease-in-out infinite 1s;
+}
+
+@keyframes heroFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.library-title,
+.library-subtitlee,
+.library-center,
+.library-subtitle {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroTextReveal 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.library-title {
+    animation-delay: 0.2s;
+}
+.library-subtitlee {
+    animation-delay: 0.35s;
+}
+.library-center {
+    animation-delay: 0.5s;
+}
+.library-subtitle {
+    animation-delay: 0.65s;
+}
+
+@keyframes heroTextReveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 3. Horizontal Scroll Rows and Arrow Controls */
+.book-row-container {
+    position: relative;
+    margin: 0 5%;
+    width: 90%;
+}
+
+.book-grid {
+    margin-left: 0 !important;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap !important;
+    gap: 30px !important;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    padding: 20px 8px !important;
+    margin-bottom: 20px;
+}
+
+.book-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.scroll-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    color: #2e4634;
+    font-size: 26px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    opacity: 0;
+    pointer-events: none;
+    outline: none;
+}
+
+.book-row-container:hover .scroll-arrow {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.scroll-arrow:hover {
+    background: #5c7e66;
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 18px rgba(92, 126, 102, 0.25);
+}
+
+.scroll-arrow.prev {
+    left: -22px;
+}
+
+.scroll-arrow.next {
+    right: -22px;
+}
+
+/* 4. Book Card Lift, Scale, Shadow and Zoom Hover Effects */
+.book-card {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+                transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    will-change: transform, opacity, box-shadow;
+}
+
+.book-card:hover {
+    transform: translateY(-8px) scale(1.03) !important;
+    box-shadow: 0 16px 32px rgba(46, 70, 52, 0.15) !important;
+}
+
+.book-image img {
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    will-change: transform;
+}
+
+.book-card:hover .book-image img {
+    transform: scale(1.08);
+}
+
+/* 5. View All Button Micro-interactions */
+.view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.3s ease, transform 0.3s ease !important;
+}
+
+.view-all:hover {
+    color: rgb(13, 100, 13) !important;
+    transform: translateX(4px);
+}
+
+.view-all .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.view-all:hover .arrow {
+    transform: translateX(5px);
+}
+
+/* 6. Scroll Reveal Stagger animations using Intersection Observer */
+.section-header {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+                transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform, opacity;
+}
+
+.section-header.reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.book-grid.reveal .book-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.book-grid.reveal .book-card:nth-child(1) { transition-delay: 0.05s; }
+.book-grid.reveal .book-card:nth-child(2) { transition-delay: 0.12s; }
+.book-grid.reveal .book-card:nth-child(3) { transition-delay: 0.19s; }
+.book-grid.reveal .book-card:nth-child(4) { transition-delay: 0.26s; }
+.book-grid.reveal .book-card:nth-child(5) { transition-delay: 0.33s; }
