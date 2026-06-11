@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookNest - Your cozy reading nest</title>
+  <link rel="stylesheet" href="accounts.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="card">
+      <div class="brand-header">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="#3a6b50" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+          </svg>
+        </div>
+        <div class="brand-info">
+          <div class="brand-name">BookNest</div>
+          <div class="brand-subtitle">Your cozy reading nest</div>
+        </div>
+      </div>
+
+      <div class="tab-switcher">
+        <div class="tab active" id="tab-in" onclick="show('in')">Sign in</div>
+        <div class="tab" id="tab-up" onclick="show('up')">Create account</div>
+      </div>
+
+      <!-- Sign In Panel -->
+      <div id="panel-in" class="panel active">
+        <h2 class="panel-heading">Welcome back</h2>
+        <p class="panel-subtext">Pick up where you left off.</p>
+
+        <div class="form-group">
+          <label>EMAIL</label>
+          <input type="email" placeholder="Email address">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label>PASSWORD</label>
+            <a href="#" class="forgot-link">Forgot?</a>
+          </div>
+          <input type="password" placeholder="Password">
+        </div>
+
+        <button class="primary-btn">Sign in</button>
+
+        <div class="divider">
+          <span>or</span>
+        </div>
+
+        <button class="google-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+          Continue with Google
+        </button>
+      </div>
+
+      <!-- Create Account Panel -->
+      <div id="panel-up" class="panel">
+        <div class="step-indicator">
+          <div class="dot active" id="dot-1"></div>
+          <div class="dot pending" id="dot-2"></div>
+          <div class="dot pending" id="dot-3"></div>
+        </div>
+
+        <!-- Step 1 -->
+        <div id="u1" class="step-panel active">
+          <h2 class="panel-heading">Join BookNest</h2>
+          <p class="panel-subtext">Takes about a minute.</p>
+          
+          <div class="grid-2">
+            <div class="form-group">
+              <label>FIRST NAME</label>
+              <input type="text" placeholder="First name">
+            </div>
+            <div class="form-group">
+              <label>LAST NAME</label>
+              <input type="text" placeholder="Last name">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>EMAIL</label>
+            <input type="email" placeholder="Email address">
+          </div>
+          <div class="form-group">
+            <label>PASSWORD</label>
+            <input type="password" placeholder="Min. 8 characters">
+          </div>
+          
+          <button class="primary-btn" onclick="ustep(2)">Continue &rarr;</button>
+
+          <div class="divider">
+            <span>or</span>
+          </div>
+
+          <button class="google-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Sign up with Google
+          </button>
+        </div>
+
+        <!-- Step 2 -->
+        <div id="u2" class="step-panel">
+          <h2 class="panel-heading">Your reading taste</h2>
+          <p class="panel-subtext">We'll personalize your library.</p>
+          
+          <div class="form-group">
+            <label>READING GOAL (BOOKS / YEAR)</label>
+            <input type="number" placeholder="e.g. 24" value="24">
+          </div>
+
+          <div class="genre-grid">
+            <div class="genre-chip selected" onclick="toggleChip(this)">Fiction</div>
+            <div class="genre-chip" onclick="toggleChip(this)">Non-fiction</div>
+            <div class="genre-chip" onclick="toggleChip(this)">Mystery</div>
+            <div class="genre-chip selected" onclick="toggleChip(this)">Sci-fi</div>
+            <div class="genre-chip" onclick="toggleChip(this)">History</div>
+            <div class="genre-chip" onclick="toggleChip(this)">Fantasy</div>
+            <div class="genre-chip" onclick="toggleChip(this)">Biography</div>
+            <div class="genre-chip" onclick="toggleChip(this)">Self-help</div>
+            <div class="genre-chip" onclick="toggleChip(this)">Poetry</div>
+          </div>
+          
+          <button class="primary-btn" onclick="ustep(3)">Continue &rarr;</button>
+        </div>
+
+        <!-- Step 3 -->
+        <div id="u3" class="step-panel">
+          <h2 class="panel-heading">Almost done</h2>
+          <p class="panel-subtext">One last step.</p>
+          
+          <div class="form-group">
+            <label>DISPLAY NAME</label>
+            <input type="text" placeholder="e.g. ada_reads">
+          </div>
+
+          <div class="perks-box">
+            <div class="perk">📚 Unlimited library & reading logs</div>
+            <div class="perk">📈 Reading stats & yearly recap</div>
+            <div class="perk">📝 Private notes & highlights</div>
+          </div>
+          
+          <button class="primary-btn">Create my account</button>
+        </div>
+
+      </div>
+    </div>
+    
+    <div class="footer-note" id="footer-in">
+      Don't have an account? <a href="#" onclick="show('up'); return false;">Sign up free</a>
+    </div>
+    <div class="footer-note" id="footer-up" style="display: none;">
+      Already a member? <a href="#" onclick="show('in'); return false;">Sign in</a>
+    </div>
+  </div>
+  <script src="accounts.js"></script>
+</body>
+</html>
